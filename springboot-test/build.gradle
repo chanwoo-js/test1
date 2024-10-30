@@ -1,0 +1,51 @@
+plugins {
+    // 프로젝트에 사용할 스프링부트 플러그인
+    id 'java'
+    id 'org.springframework.boot' version '3.2.0' // springboot 버전이 3이상이면 java는 버전 10 이상 사용 가능
+    id 'io.spring.dependency-management' version '1.1.0' // 의존성 관리
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT' // snapshot 개발중인 단계
+sourceCompatibility = '17' // 자바 소스 컴파일 버전
+
+repositories {
+    mavenCentral() // 의존성을 받을 저장소 지정 ( 기본값 )
+}
+
+dependencies {
+    // 스프링부트 웹 관련 기능 제공
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // 스프링 데이터 JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // 스프링 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // 유효성 검사를 위한 의존성
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
+
+    // JWT 의존성
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
+    // H2 데이터베이스
+    runtimeOnly 'com.h2database:h2'
+    // MySQL 데이터베이스
+    implementation 'mysql:mysql-connector-java:8.0.33'
+
+    // 롬복 라이브러리 (코드 간결화)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // 테스트 라이브러리
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    testImplementation 'org.assertj:assertj-core:3.22.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+    useJUnitPlatform()
+}
